@@ -1,0 +1,745 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Школа №66 - Дніпро</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(102, 126, 234, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo::before {
+            content: "🏫";
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #fff;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            background-size: cover;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8f9ff;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Programs Section */
+        .programs {
+            background: white;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .program-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .program-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .program-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* News Section */
+        .news {
+            background: #f8f9ff;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: #f8f9ff;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-right: 1rem;
+            width: 30px;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px;
+            border: 2px solid #f0f0f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+<div class="scroll-indicator"></div>
+
+<header id="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">Школа №66</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Головна</a></li>
+                    <li><a href="#about">Про нас</a></li>
+                    <li><a href="#programs">Програми</a></li>
+                    <li><a href="#news">Новини</a></li>
+                    <li><a href="#contact">Контакти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section id="home" class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Школа №66</h1>
+            <p>Сучасна освіта у серці Дніпра</p>
+            <a href="#about" class="btn">Дізнатися більше</a>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="about fade-in">
+    <div class="container">
+        <div class="section-title">
+            <h2>Про нашу школу</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Школа №66 у Дніпрі — це сучасний навчальний заклад, що надає якісну освіту вже понад 50 років. Ми прагнемо створити комфортне та стимулююче середовище для розвитку кожного учня.</p>
+                <p>Наша місія — виховати всебічно розвинену особистість, готову до викликів сучасного світу. Ми поєднуємо традиційні освітні підходи з інноваційними методиками навчання.</p>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">850</div>
+                    <div>Учнів</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">45</div>
+                    <div>Вчителів</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">52</div>
+                    <div>Роки досвіду</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="programs" class="programs fade-in">
+    <div class="container">
+        <div class="section-title">
+            <h2>Наші програми</h2>
+        </div>
+        <div class="programs-grid">
+            <div class="program-card">
+                <div class="program-icon">📚</div>
+                <h3>Початкова школа</h3>
+                <p>Комплексна програма для учнів 1-4 класів з акцентом на розвиток базових навичок та творчого мислення.</p>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">🔬</div>
+                <h3>STEM освіта</h3>
+                <p>Поглиблене вивчення науки, технологій, інженерії та математики з використанням сучасного обладнання.</p>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">🎨</div>
+                <h3>Мистецькі класи</h3>
+                <p>Розвиток творчих здібностей через музику, образотворче мистецтво та театральну діяльність.</p>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">🌍</div>
+                <h3>Мовні програми</h3>
+                <p>Поглиблене вивчення іноземних мов з носіями мови та міжнародними сертифікаціями.</p>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">💻</div>
+                <h3>IT класи</h3>
+                <p>Програмування, робототехніка та цифрові технології для підготовки до майбутніх професій.</p>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">🏃</div>
+                <h3>Спортивні секції</h3>
+                <p>Різноманітні спортивні програми для фізичного розвитку та формування командного духу.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="news" class="news fade-in">
+    <div class="container">
+        <div class="section-title">
+            <h2>Останні новини</h2>
+        </div>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-image">🏆</div>
+                <div class="news-content">
+                    <div class="news-date">15 березня 2025</div>
+                    <h3>Перемога у міському конкурсі</h3>
+                    <p>Наші учні здобули перше місце у міському конкурсі з математики та фізики.</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image">🔬</div>
+                <div class="news-content">
+                    <div class="news-date">10 березня 2025</div>
+                    <h3>Нова лабораторія</h3>
+                    <p>У школі відкрито сучасну лабораторію для проведення експериментів з хімії та біології.</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image">🌟</div>
+                <div class="news-content">
+                    <div class="news-date">5 березня 2025</div>
+                    <h3>День відкритих дверей</h3>
+                    <p>Запрошуємо майбутніх першокласників та їх батьків на День відкритих дверей 20 березня.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact fade-in">
+    <div class="container">
+        <div class="section-title">
+            <h2>Контакти</h2>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i>📍</i>
+                    <div>
+                        <strong>Адреса:</strong><br>
+                        вул. Освітня, 66, Дніпро, 49000
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i>📞</i>
+                    <div>
+                        <strong>Телефон:</strong><br>
+                        +38 (056) 123-45-67
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i>✉️</i>
+                    <div>
+                        <strong>Email:</strong><br>
+                        info@school66.dp.ua
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i>🕒</i>
+                    <div>
+                        <strong>Робочі години:</strong><br>
+                        Пн-Пт: 8:00 - 17:00
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Ім'я</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Тема</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Повідомлення</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Надіслати</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Школа №66, Дніпро. Всі права захищені.</p>
+    </div>
+</footer>
+
+<script>
+    // Scroll indicator
+    window.addEventListener('scroll', () => {
+        const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        document.querySelector('.scroll-indicator').style.width = scrolled + '%';
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Fade in animation on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Form submission
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Дякуємо за ваше повідомлення! Ми зв\'яжемося з вами найближчим часом.');
+        this.reset();
+    });
+
+    // Counter animation for stats
+    const animateCounters = () => {
+        const counters = document.querySelectorAll('.stat-number');
+        counters.forEach(counter => {
+            const target = parseInt(counter.textContent);
+            const increment = target / 100;
+            let current = 0;
+
+            const updateCounter = () => {
+                if (current < target) {
+                    current += increment;
+                    counter.textContent = Math.floor(current);
+                    setTimeout(updateCounter, 20);
+                } else {
+                    counter.textContent = target;
+                }
+            };
+
+            updateCounter();
+        });
+    };
+
+    // Trigger counter animation when stats section is visible
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    const statsSection = document.querySelector('.stats');
+    if (statsSection) {
+        statsObserver.observe(statsSection);
+    }
+</script>
+</body>
+</html>

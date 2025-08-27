@@ -1,0 +1,133 @@
+﻿@{
+    ViewData["Title"] = "Головна";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="home" class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Школа №66</h1>
+            <p>Сучасна освіта у серці Дніпра</p>
+            <a href="#about" class="btn">Дізнатися більше</a>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="about fade-in">
+    <div class="container">
+        <div class="section-title"><h2>Про нашу школу</h2></div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Школа №66 у Дніпрі — сучасний навчальний заклад, що надає якісну освіту вже понад 50 років.</p>
+                <p>Місія — виховати всебічно розвинену особистість, готову до викликів сучасного світу.</p>
+            </div>
+            <div class="stats">
+                <div class="stat-item"><div class="stat-number">850</div><div>Учнів</div></div>
+                <div class="stat-item"><div class="stat-number">45</div><div>Вчителів</div></div>
+                <div class="stat-item"><div class="stat-number">52</div><div>Роки досвіду</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="programs" class="programs fade-in">
+    <div class="container">
+        <div class="section-title"><h2>Наші програми</h2></div>
+        <div class="programs-grid">
+            <div class="program-card"><div class="program-icon">📚</div><h3>Початкова школа</h3><p>Програма для учнів 1-4 класів.</p></div>
+            <div class="program-card"><div class="program-icon">🔬</div><h3>STEM освіта</h3><p>Наука, технології, інженерія та математика.</p></div>
+            <div class="program-card"><div class="program-icon">🎨</div><h3>Мистецькі класи</h3><p>Музика, образотворче мистецтво, театр.</p></div>
+            <div class="program-card"><div class="program-icon">🌍</div><h3>Мовні програми</h3><p>Іноземні мови з носіями та сертифікаціями.</p></div>
+            <div class="program-card"><div class="program-icon">💻</div><h3>IT класи</h3><p>Програмування, робототехніка, цифрові технології.</p></div>
+            <div class="program-card"><div class="program-icon">🏃</div><h3>Спортивні секції</h3><p>Різноманітні спортивні програми для розвитку фізичних навичок.</p></div>
+        </div>
+    </div>
+</section>
+
+<section id="news" class="news fade-in">
+    <div class="container">
+        <div class="section-title"><h2>Останні новини</h2></div>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-image">🏆</div>
+                <div class="news-content">
+                    <div class="news-date">15 березня 2025</div>
+                    <h3>Перемога у міському конкурсі</h3>
+                    <p>Учні здобули перше місце у міському конкурсі з математики та фізики.</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image">🔬</div>
+                <div class="news-content">
+                    <div class="news-date">10 березня 2025</div>
+                    <h3>Нова лабораторія</h3>
+                    <p>Відкрито сучасну лабораторію для експериментів з хімії та біології.</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-image">🌟</div>
+                <div class="news-content">
+                    <div class="news-date">5 березня 2025</div>
+                    <h3>День відкритих дверей</h3>
+                    <p>Запрошуємо майбутніх першокласників та батьків 20 березня.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact fade-in">
+    <div class="container">
+        <div class="section-title"><h2>Контакти</h2></div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item"><i>📍</i><div><strong>Адреса:</strong><br>вул. Освітня, 66, Дніпро, 49000</div></div>
+                <div class="contact-item"><i>📞</i><div><strong>Телефон:</strong><br>+38 (056) 123-45-67</div></div>
+                <div class="contact-item"><i>✉️</i><div><strong>Email:</strong><br>info@school66.dp.ua</div></div>
+                <div class="contact-item"><i>🕒</i><div><strong>Робочі години:</strong><br>Пн-Пт: 8:00 - 17:00</div></div>
+            </div>
+            <form class="contact-form">
+                <div class="form-group"><label for="name">Ім'я</label><input type="text" id="name" name="name" required></div>
+                <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" required></div>
+                <div class="form-group"><label for="subject">Тема</label><input type="text" id="subject" name="subject" required></div>
+                <div class="form-group"><label for="message">Повідомлення</label><textarea id="message" name="message" rows="5" required></textarea></div>
+                <button type="submit" class="btn-submit">Надіслати</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+    // Форма контакту
+    document.querySelector('.contact-form').addEventListener('submit', function(e){
+        e.preventDefault();
+        alert('Дякуємо за ваше повідомлення! Ми зв\'яжемося з вами найближчим часом.');
+        this.reset();
+    });
+
+    // Анімація лічильників
+    const animateCounters = () => {
+        const counters = document.querySelectorAll('.stat-number');
+        counters.forEach(counter => {
+            const target = parseInt(counter.textContent);
+            let current = 0;
+            const increment = target / 100;
+            const update = () => {
+                if(current < target){ current += increment; counter.textContent = Math.floor(current); setTimeout(update, 20);}
+                else{ counter.textContent = target; }
+            };
+            update();
+        });
+    };
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){ animateCounters(); observer.unobserve(entry.target); }
+        });
+    }, { threshold: 0.5 });
+
+    const statsSection = document.querySelector('.stats');
+    if(statsSection){ observer.observe(statsSection); }
+</script>
+}

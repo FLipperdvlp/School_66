@@ -15,7 +15,7 @@ public class AppDbContext : DbContext
     public required DbSet<Grades> Grades { get; set; }
     public required DbSet<StudentLesson> StudentLessons { get; set; }
     
-    public AppDbContext() { }
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }    
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlite("Data source = School_66.db");

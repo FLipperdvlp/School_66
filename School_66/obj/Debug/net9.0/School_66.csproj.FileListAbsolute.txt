@@ -59,7 +59,6 @@ C:\VS_Code\School_66\School_66\School_66\obj\Debug\net9.0\rjimswa.dswa.cache.jso
 C:\VS_Code\School_66\School_66\School_66\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\VS_Code\School_66\School_66\School_66\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
 C:\VS_Code\School_66\School_66\School_66\obj\Debug\net9.0\scopedcss\bundle\School_66.styles.css
-C:\VS_Code\School_66\School_66\School_66\obj\Debug\net9.0\compressed\6jpelp0ij9-ao4mj00fuj.gz
 C:\VS_Code\School_66\School_66\School_66\obj\Debug\net9.0\staticwebassets.build.json
 C:\VS_Code\School_66\School_66\School_66\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\VS_Code\School_66\School_66\School_66\obj\Debug\net9.0\staticwebassets.development.json
@@ -70,3 +69,4 @@ C:\VS_Code\School_66\School_66\School_66\obj\Debug\net9.0\refint\School_66.dll
 C:\VS_Code\School_66\School_66\School_66\obj\Debug\net9.0\School_66.pdb
 C:\VS_Code\School_66\School_66\School_66\obj\Debug\net9.0\School_66.genruntimeconfig.cache
 C:\VS_Code\School_66\School_66\School_66\obj\Debug\net9.0\ref\School_66.dll
+C:\VS_Code\School_66\School_66\School_66\obj\Debug\net9.0\compressed\6jpelp0ij9-ao4mj00fuj.gz

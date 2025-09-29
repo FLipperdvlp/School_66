@@ -2,4 +2,66 @@
     ViewData["Title"] = "Головна";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>Ласкаво просимо до форми для запитань</h1>
+<section id="form-page" class="container" style="padding: 40px 20px;">
+    <h2 style="text-align:center; margin-bottom:20px;">
+        Ласкаво просимо до форми заповнення запиту/питань до навчальної частини
+    </h2>
+
+    <div style="margin-top:40px; margin-left:20px;">
+        <p style="font-size:18px; margin-bottom:15px;">
+            Виберіть, від кого робите запит:
+        </p>
+
+        <div style="display:flex; gap:15px; margin-bottom:30px;">
+            <button type="button" id="studentBtn" class="black-btn">Учень</button>
+            <button type="button" id="parentBtn" class="black-btn">Батьки</button>
+        </div>
+
+        <!-- Блок для форм -->
+        <div id="studentForm" style="display:none; padding:20px; border:1px solid #ddd; border-radius:8px;">
+            <h3>Форма для учня</h3>
+            <p>Hello world</p>
+        </div>
+
+        <div id="parentForm" style="display:none; padding:20px; border:1px solid #ddd; border-radius:8px;">
+            <h3>Форма для батьків</h3>
+            <p>Hello world</p>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        const studentBtn = document.getElementById("studentBtn");
+        const parentBtn = document.getElementById("parentBtn");
+        const studentForm = document.getElementById("studentForm");
+        const parentForm = document.getElementById("parentForm");
+
+        studentBtn.addEventListener("click", () => {
+            studentForm.style.display = "block";
+            parentForm.style.display = "none";
+        });
+
+        parentBtn.addEventListener("click", () => {
+            parentForm.style.display = "block";
+            studentForm.style.display = "none";
+        });
+    </script>
+
+    <style>
+        .black-btn {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .black-btn:hover {
+            background-color: #333;
+        }
+    </style>
+}

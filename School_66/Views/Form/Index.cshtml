@@ -3,9 +3,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section id="form-page" class="container" style="padding: 40px 20px;">
-    <h2 style="text-align:center; margin-bottom:20px;">
-        Ласкаво просимо до форми заповнення запиту/питань до навчальної частини
-    </h2>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h2 style="margin:0; text-align:left;">
+            Ласкаво просимо до форми заповнення запиту/питань до навчальної частини
+        </h2>
+
+        <!-- Кнопка "Мої запити" -->
+        <a asp-controller="Form" asp-action="GetForm" class="requests-btn">
+            Мої запити
+        </a>
+    </div>
 
     <div style="margin-top:40px; margin-left:20px;">
         <p style="font-size:18px; margin-bottom:15px;">
@@ -13,8 +20,8 @@
         </p>
 
         <div style="display:flex; gap:15px; margin-bottom:30px;">
-            <button type="button" id="studentBtn" class="black-btn">Учень</button>
-            <button type="button" id="parentBtn" class="black-btn">Батьки</button>
+            <button type="button" id="studentBtn" class="modern-btn">Учень</button>
+            <button type="button" id="parentBtn" class="modern-btn">Батьки</button>
         </div>
 
         <!-- Блок для форм -->
@@ -37,31 +44,60 @@
         const studentForm = document.getElementById("studentForm");
         const parentForm = document.getElementById("parentForm");
 
+        // Перемикач форм
         studentBtn.addEventListener("click", () => {
             studentForm.style.display = "block";
             parentForm.style.display = "none";
+            studentBtn.classList.add("active");
+            parentBtn.classList.remove("active");
         });
 
         parentBtn.addEventListener("click", () => {
             parentForm.style.display = "block";
             studentForm.style.display = "none";
+            parentBtn.classList.add("active");
+            studentBtn.classList.remove("active");
         });
     </script>
 
     <style>
-        .black-btn {
-            background-color: #000;
+        /* Сучасний стиль кнопок */
+        .modern-btn {
+            background: linear-gradient(135deg, #007bff, #0056b3);
             color: #fff;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 6px;
+            border-radius: 30px;
             cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.3s;
+            font-weight: 500;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
         }
 
-        .black-btn:hover {
-            background-color: #333;
+        .modern-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        .modern-btn.active {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+        }
+
+        /* Кнопка "Мої запити" */
+        .requests-btn {
+            background: #ffc107;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .requests-btn:hover {
+            background: #e0a800;
+            color: #fff;
         }
     </style>
 }

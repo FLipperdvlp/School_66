@@ -1,0 +1,103 @@
+@model School_66.Models.StudentViewModel
+@{
+    ViewData["Title"] = "Головна";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Запит для учнів</h2>
+
+<form action="/students/createformforstudent" method="post">
+    <div class="mb-3">
+        <label for="firstName" class="form-label">Ім'я</label>
+        <input type="text" class="form-control" id="firstName" name="FirstName" value="@Model?.FirstName ?? """ />
+    </div>
+
+    <div class="mb-3">
+        <label for="lastName" class="form-label">Прізвище</label>
+        <input type="text" class="form-control" id="lastName" name="LastName" value="@Model.LastName" />
+    </div>
+
+    <div class="mb-3">
+        <label for="className" class="form-label">Клас</label>
+        <input type="text" class="form-control" id="className" name="ClassName" value="@Model.ClassName" placeholder="Наприклад: 10-А" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Як з вами зв’язатися?</label>
+        <div class="contact-buttons">
+            <button type="button" class="modern-btn" data-method="Telegram">
+                <i class="bi bi-telegram"></i> Телеграм
+            </button>
+
+            <button type="button" class="modern-btn" data-method="Email">
+                <i class="bi bi-envelope"></i> Електронна пошта
+            </button>
+
+            <button type="button" class="modern-btn" data-method="Phone">
+                <i class="bi bi-telephone"></i> Телефонний дзвінок
+            </button>
+        </div>
+
+        <!-- приховане поле для збереження вибору -->
+        <input type="hidden" id="contactMethod" name="ContactMethod" value="@Model?.ContactMethod ?? """ />
+    </div>
+
+    <div class="mb-3">
+        <label for="requestText" class="form-label">Ваш запит</label>
+        <textarea class="form-control" id="requestText" name="RequestText" rows="5">@Model?.RequestText ?? ""</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Відправити</button>
+</form>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll(".contact-buttons .modern-btn").forEach(btn => {
+            btn.addEventListener("click", function (event) {
+                // встановлюємо значення у hidden input
+                document.getElementById("contactMethod").value = this.dataset.method;
+
+                // прибираємо "active" з усіх кнопок
+                document.querySelectorAll(".contact-buttons .modern-btn")
+                    .forEach(b => b.classList.remove("active"));
+
+                // додаємо "active" для вибраної кнопки
+                this.classList.add("active");
+            });
+        });
+    </script>
+
+    <style>
+        .modern-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .modern-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        .modern-btn.active {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+    </style>
+}

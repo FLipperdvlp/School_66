@@ -1,20 +1,25 @@
 using Microsoft.EntityFrameworkCore;
 using School_66.DataBase;
+using School_66.Interface;
+using School_66.Service;
 
 var builder = WebApplication.CreateBuilder(args);
-{
-    builder.Services.AddControllersWithViews();
-    builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseSqlite("Data source=School_66.db"));
-    
-}
+
+// сервисы
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite("Data source=School_66.db"));
+
+builder.Services.AddScoped<IStudentFormService, StudentFormService>();
+
 var app = builder.Build();
-{
-    app.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
-    
-    
-    app.UseStaticFiles();
-    app.Run();
-}
+
+// пайплайн
+app.UseStaticFiles();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();

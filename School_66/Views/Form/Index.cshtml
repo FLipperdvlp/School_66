@@ -9,8 +9,8 @@
         </h2>
 
         <!-- Кнопка "Мої запити" -->
-        <a asp-controller="Form" asp-action="GetForm" class="requests-btn">
-            Мої запити
+        <a id="myRequestsBtn" href="/forms/getForms" class="requests-btn">
+            <i class="bi bi-arrow-right" style="margin-right:8px;"></i>Мої запити
         </a>
     </div>
 
@@ -33,22 +33,38 @@
 
 @section Scripts {
     <script>
+        const isAuthenticated = @User.Identity.IsAuthenticated.ToString().ToLower();
+
+        // Кнопка "Мої запити"
+        const myRequestsBtn = document.getElementById("myRequestsBtn");
+        myRequestsBtn.addEventListener("click", function(e){
+            if(!isAuthenticated){
+                e.preventDefault();
+                alert("Щоб переглянути 'Мої запити', потрібно увійти або зареєструватися.");
+            }
+            // Если пользователь авторизован, переход идёт автоматически
+        });
+
+        // Переключение форм (если нужны)
         const studentBtn = document.getElementById("studentBtn");
         const parentBtn = document.getElementById("parentBtn");
         const studentForm = document.getElementById("studentForm");
         const parentForm = document.getElementById("parentForm");
 
-        // Перемикач форм
-        studentBtn.addEventListener("click", () => {
-            studentForm.style.display = "block";
-            parentForm.style.display = "none";
+        studentBtn?.addEventListener("click", () => {
+            if(studentForm && parentForm){
+                studentForm.style.display = "block";
+                parentForm.style.display = "none";
+            }
             studentBtn.classList.add("active");
             parentBtn.classList.remove("active");
         });
 
-        parentBtn.addEventListener("click", () => {
-            parentForm.style.display = "block";
-            studentForm.style.display = "none";
+        parentBtn?.addEventListener("click", () => {
+            if(studentForm && parentForm){
+                parentForm.style.display = "block";
+                studentForm.style.display = "none";
+            }
             parentBtn.classList.add("active");
             studentBtn.classList.remove("active");
         });
@@ -57,26 +73,26 @@
     <style>
         /* Сучасний стиль кнопок */
         .modern-btn {
-
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 6px; /* расстояние между иконкой и текстом */
+            gap: 6px; 
             background: linear-gradient(135deg, #007bff, #0056b3);
-            color: #fff !important; /* чтобы у ссылки не было синего */
+            color: #fff !important; 
             padding: 12px 24px;
             border: none;
             border-radius: 30px;
             cursor: pointer;
             font-size: 16px;
             font-weight: 500;
-            text-decoration: none; /* убрать подчёркивание */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
         }
 
         .modern-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.25);
             text-decoration: none;
         }
 

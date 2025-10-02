@@ -1,0 +1,92 @@
+@{
+    ViewData["Title"] = "Вхід";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="auth-form-container">
+    <h2>Вхід</h2>
+    <form asp-controller="Account" asp-action="LogIn" method="post">
+        <div class="form-group">
+            <label for="Email">Email:</label>
+            <input type="email" id="Email" name="Email" required placeholder="Введіть email" />
+        </div>
+
+        <div class="form-group">
+            <label for="Password">Пароль:</label>
+            <input type="password" id="Password" name="Password" required placeholder="Введіть пароль" />
+        </div>
+
+        <button type="submit" class="auth-btn">Увійти</button>
+    </form>
+
+    <p>Немає акаунту? <a href="/Register">Зареєструватися</a></p>
+</section>
+
+@section Scripts {
+    <style>
+        .auth-form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 12px;
+            background: #f7f7f7;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .auth-form-container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display:block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width:100%;
+            padding:10px;
+            border-radius:8px;
+            border:1px solid #ccc;
+            font-size:16px;
+        }
+
+        .auth-btn {
+            width:100%;
+            padding:12px;
+            border:none;
+            border-radius:30px;
+            background: linear-gradient(135deg,#007bff,#0056b3);
+            color:#fff;
+            font-size:16px;
+            font-weight:600;
+            cursor:pointer;
+            transition: all 0.3s;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .auth-form-container p {
+            text-align:center;
+            margin-top:20px;
+        }
+
+        .auth-form-container a {
+            color:#007bff;
+            text-decoration:none;
+            font-weight:500;
+        }
+
+        .auth-form-container a:hover {
+            text-decoration:underline;
+        }
+    </style>
+}

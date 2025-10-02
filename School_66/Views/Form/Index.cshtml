@@ -1,6 +1,4 @@
-@{git rm -r --cached School_66/bin
-git rm -r --cached School_66/obj
-
+@{
     ViewData["Title"] = "Головна";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -22,19 +20,13 @@ git rm -r --cached School_66/obj
         </p>
 
         <div style="display:flex; gap:15px; margin-bottom:30px;">
-            <button type="button" id="studentBtn" class="modern-btn">Учень</button>
-            <button type="button" id="parentBtn" class="modern-btn">Батьки</button>
-        </div>
+            <a id="studentBtn" href="/students/Get" class="modern-btn">
+                <i class="bi bi-arrow-right" style="margin-right:8px;"></i>Учень
+            </a>
 
-        <!-- Блок для форм -->
-        <div id="studentForm" style="display:none; padding:20px; border:1px solid #ddd; border-radius:8px;">
-            <h3>Форма для учня</h3>
-            <p>Hello world</p>
-        </div>
-
-        <div id="parentForm" style="display:none; padding:20px; border:1px solid #ddd; border-radius:8px;">
-            <h3>Форма для батьків</h3>
-            <p>Hello world</p>
+            <a id="parentBtn" href="/parents/Get" class="modern-btn">
+                <i class="bi bi-people" style="margin-right:8px;"></i>Батьки
+            </a>
         </div>
     </div>
 </section>
@@ -65,14 +57,19 @@ git rm -r --cached School_66/obj
     <style>
         /* Сучасний стиль кнопок */
         .modern-btn {
+
+            align-items: center;
+            justify-content: center;
+            gap: 6px; /* расстояние между иконкой и текстом */
             background: linear-gradient(135deg, #007bff, #0056b3);
-            color: #fff;
+            color: #fff !important; /* чтобы у ссылки не было синего */
             padding: 12px 24px;
             border: none;
             border-radius: 30px;
             cursor: pointer;
             font-size: 16px;
             font-weight: 500;
+            text-decoration: none; /* убрать подчёркивание */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
         }
@@ -80,6 +77,7 @@ git rm -r --cached School_66/obj
         .modern-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+            text-decoration: none;
         }
 
         .modern-btn.active {

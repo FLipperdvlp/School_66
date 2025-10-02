@@ -7,6 +7,7 @@ public class AppDbContext : DbContext
 {
     public required DbSet<Teacher> Teachers { get; set; }
     public required DbSet<Student> Students { get; set; }
+    public required DbSet<Parent> Parents { get; set; }
     public required DbSet<Subject> Subjects { get; set; }
     public required DbSet<ClassSubject> ClassSubjects { get; set; }
     public required DbSet<Class> Classes { get; set; }

@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// сервисы
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -16,8 +15,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/LogIn";       // Страница входа
-        options.AccessDeniedPath = "/LogIn"; // Страница при недостатке прав
+        options.LoginPath = "/LogIn";     
+        options.AccessDeniedPath = "/LogIn"; 
         options.ExpireTimeSpan = TimeSpan.FromHours(1);
     });
 

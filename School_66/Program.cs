@@ -29,7 +29,6 @@ builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
-// пайплайн
 app.UseStaticFiles();
 
 app.MapControllerRoute(

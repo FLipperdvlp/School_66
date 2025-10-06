@@ -8,7 +8,6 @@ public class RequestService : IRequestService
 
     public async Task<List<Request>> GetUserRequestsAsync(string userId)
     {
-        // Берем только запросы текущего пользователя
         return await _db.Requests
             .Where(r => r.UserId == userId)
             .OrderByDescending(r => r.CreatedAt)

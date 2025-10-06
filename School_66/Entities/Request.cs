@@ -7,22 +7,22 @@ public class Request
 
     [Required]
     [MaxLength(200)]
-    public string Title { get; set; } = string.Empty;  // Заголовок запроса
+    public string Title { get; set; } = string.Empty; 
 
     [Required]
     [MaxLength(50)]
-    public string Type { get; set; } = string.Empty;   // Тип запроса: Учень / Батьки / Інше
+    public string Type { get; set; } = string.Empty;  
 
     [Required]
     public DateTime CreatedAt { get; set; } = DateTime.Now;
 
     [Required]
     [MaxLength(50)]
-    public string Status { get; set; } = string.Empty; // Новий, Обробляється, Виконано
+    public string Status { get; set; } = string.Empty; 
 
     [MaxLength(1000)]
     public string Description { get; set; } = string.Empty;
 
     [Required]
-    public string UserId { get; set; } = string.Empty;// Идентификатор пользователя (FK)
+    public string UserId { get; set; } = string.Empty;
 }

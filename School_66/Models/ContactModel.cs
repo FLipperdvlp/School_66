@@ -1,6 +1,5 @@
 ﻿namespace School_66.Models;
 
-// Models/ContactModel.cs
 public class ContactModel
 {
     public string? Name { get; set; }

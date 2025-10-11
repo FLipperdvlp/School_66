@@ -10,7 +10,7 @@ public class ParentViewModel
     public string ChildFullName { get; set; } = string.Empty;
     public string ChildClass { get; set; } = string.Empty;
     public string ContactMethod { get; set; } = string.Empty;
-    public string RequestText { get; set; } = string.Empty; // Текст запиту
+    public string RequestText { get; set; } = string.Empty; 
 
 
     public string PhoneNumber { get; set; } = string.Empty;

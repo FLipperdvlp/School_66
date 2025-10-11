@@ -4,102 +4,399 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Запит для батьків</h2>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+            <div class="form-wrapper">
+                <div class="form-header text-center mb-5">
+                    <div class="icon-box mx-auto mb-3">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <h1 class="display-5 fw-bold gradient-text mb-2">Запит для батьків</h1>
+                    <p class="text-muted fs-5">Заповніть форму і ми обов'язково зв'яжемося з вами</p>
+                </div>
 
-<form action="/parents/createformforparent" method="post">
-    <div class="mb-3">
-        <label for="parentFirstName" class="form-label">Ваше ім’я</label>
-        <input type="text" class="form-control" id="parentFirstName" name="ParentFirstName" value="@Model?.ParentFirstName ?? """ required />
-    </div>
+                <form action="/parents/createformforparent" method="post" class="modern-form">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" 
+                                    class="form-control form-control-modern" 
+                                    id="parentFirstName" 
+                                    name="ParentFirstName" 
+                                    value="@Model?.ParentFirstName ?? """
+                                    placeholder="Ваше ім'я" 
+                                    required />
+                                <label for="parentFirstName">
+                                    <i class="bi bi-person me-2"></i>Ваше ім'я
+                                </label>
+                            </div>
+                        </div>
 
-    <div class="mb-3">
-        <label for="parentLastName" class="form-label">Ваше прізвище</label>
-        <input type="text" class="form-control" id="parentLastName" name="ParentLastName" value="@Model?.ParentLastName ?? """ required />
-    </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" 
+                                    class="form-control form-control-modern" 
+                                    id="parentLastName" 
+                                    name="ParentLastName" 
+                                    value="@Model?.ParentLastName ?? """
+                                    placeholder="Ваше прізвище" 
+                                    required />
+                                <label for="parentLastName">
+                                    <i class="bi bi-person-fill me-2"></i>Ваше прізвище
+                                </label>
+                            </div>
+                        </div>
 
-    <div class="mb-3">
-        <label for="childFullName" class="form-label">ПІБ вашого сина/дочки</label>
-        <input type="text" class="form-control" id="childFullName" name="ChildFullName" value="@Model?.ChildFullName ?? """ placeholder="Наприклад: Іваненко Марія Олегівна" required />
-    </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input type="text" 
+                                    class="form-control form-control-modern" 
+                                    id="childFullName" 
+                                    name="ChildFullName" 
+                                    value="@Model?.ChildFullName ?? """
+                                    placeholder="ПІБ дитини" 
+                                    required />
+                                <label for="childFullName">
+                                    <i class="bi bi-person-hearts me-2"></i>ПІБ вашого сина/дочки
+                                </label>
+                                <div class="form-text ps-3">Наприклад: Іваненко Марія Олегівна</div>
+                            </div>
+                        </div>
 
-    <div class="mb-3">
-        <label for="childClass" class="form-label">У якому класі навчається ваша дитина?</label>
-        <input type="text" class="form-control" id="childClass" name="ChildClass" value="@Model?.ChildClass ?? """ placeholder="Наприклад: 7-Б" required />
-    </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input type="text" 
+                                    class="form-control form-control-modern" 
+                                    id="childClass" 
+                                    name="ChildClass" 
+                                    value="@Model?.ChildClass ?? """
+                                    placeholder="Клас дитини" 
+                                    required />
+                                <label for="childClass">
+                                    <i class="bi bi-mortarboard me-2"></i>У якому класі навчається ваша дитина?
+                                </label>
+                                <div class="form-text ps-3">Наприклад: 7-Б</div>
+                            </div>
+                        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Як з вами зв’язатися?</label>
-        <div class="contact-buttons">
-            <button type="button" class="modern-btn" data-method="Telegram">
-                <i class="bi bi-telegram"></i> Телеграм
-            </button>
+                        <div class="col-12">
+                            <label class="form-label fw-semibold fs-5 mb-3">
+                                <i class="bi bi-chat-left-dots me-2"></i>Як з вами зв'язатися?
+                            </label>
+                            <div class="contact-grid">
+                                <button type="button" class="contact-card" data-method="Telegram">
+                                    <div class="contact-icon telegram">
+                                        <i class="bi bi-telegram"></i>
+                                    </div>
+                                    <span class="contact-label">Телеграм</span>
+                                    <div class="check-icon">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                    </div>
+                                </button>
 
-            <button type="button" class="modern-btn" data-method="Email">
-                <i class="bi bi-envelope"></i> Електронна пошта
-            </button>
+                                <button type="button" class="contact-card" data-method="Email">
+                                    <div class="contact-icon email">
+                                        <i class="bi bi-envelope-fill"></i>
+                                    </div>
+                                    <span class="contact-label">Email</span>
+                                    <div class="check-icon">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                    </div>
+                                </button>
 
-            <button type="button" class="modern-btn" data-method="Phone">
-                <i class="bi bi-telephone"></i> Телефонний дзвінок
-            </button>
+                                <button type="button" class="contact-card" data-method="Phone">
+                                    <div class="contact-icon phone">
+                                        <i class="bi bi-telephone-fill"></i>
+                                    </div>
+                                    <span class="contact-label">Телефон</span>
+                                    <div class="check-icon">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                    </div>
+                                </button>
+                            </div>
+                            <input type="hidden" id="contactMethod" name="ContactMethod" value="@Model?.ContactMethod ?? """/>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control form-control-modern" 
+                                        id="requestText" 
+                                        name="RequestText" 
+                                        placeholder="Ваш запит"
+                                        style="height: 150px">@Model?.RequestText ?? ""</textarea>
+                                <label for="requestText">
+                                    <i class="bi bi-pencil-square me-2"></i>Ваш запит
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-12 text-center mt-4">
+                            <button type="submit" class="btn-submit">
+                                <span class="btn-content">
+                                    <i class="bi bi-send-fill me-2"></i>
+                                    Відправити запит
+                                </span>
+                                <span class="btn-shimmer"></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <!-- приховане поле для збереження вибору -->
-        <input type="hidden" id="contactMethod" name="ContactMethod" value="@Model?.ContactMethod ?? """ />
     </div>
-
-    <div class="mb-3">
-        <label for="requestText" class="form-label">Ваш запит</label>
-        <textarea class="form-control" id="requestText" name="RequestText" rows="5">@Model?.RequestText ?? ""</textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Відправити</button>
-</form>
+</div>
 
 @section Scripts {
     <script>
-        document.querySelectorAll(".contact-buttons .modern-btn").forEach(btn => {
-            btn.addEventListener("click", function () {
-                document.getElementById("contactMethod").value = this.dataset.method;
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactCards = document.querySelectorAll('.contact-card');
+            const contactMethodInput = document.getElementById('contactMethod');
 
-                document.querySelectorAll(".contact-buttons .modern-btn")
-                    .forEach(b => b.classList.remove("active"));
+            contactCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    contactCards.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    contactMethodInput.value = this.dataset.method;
+                });
+            });
 
-                this.classList.add("active");
+            // Додаємо анімацію при фокусі на поля
+            const formControls = document.querySelectorAll('.form-control-modern');
+            formControls.forEach(control => {
+                control.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+                
+                control.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('focused');
+                });
             });
         });
     </script>
 
     <style>
-        .modern-btn {
-            display: inline-flex;
+        :root {
+            --primary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --secondary-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --telegram-color: #0088cc;
+            --email-color: #ea4335;
+            --phone-color: #34a853;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .form-wrapper {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gradient);
+            border-radius: 20px;
+            display: flex;
             align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: 500;
-            text-decoration: none;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 10px 25px rgba(240, 147, 251, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-floating {
+            position: relative;
             transition: all 0.3s ease;
         }
 
-        .modern-btn:hover {
+        .form-floating.focused {
             transform: translateY(-2px);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
         }
 
-        .modern-btn.active {
-            background: linear-gradient(135deg, #28a745, #1e7e34);
+        .form-control-modern {
+            border: 2px solid #ffe0f0;
+            border-radius: 15px;
+            padding: 1rem 1.25rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fffafc;
         }
 
-        .contact-buttons {
+        .form-control-modern:focus {
+            border-color: #f093fb;
+            box-shadow: 0 0 0 0.25rem rgba(240, 147, 251, 0.15);
+            background: white;
+        }
+
+        .form-floating > label {
+            padding: 1rem 1.25rem;
+            color: #6b7280;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card {
+            position: relative;
+            background: white;
+            border: 3px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 1.5rem 1rem;
             display: flex;
-            gap: 15px;
-            margin-top: 10px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-card.active {
+            border-color: #f093fb;
+            background: linear-gradient(135deg, #fff5fa 0%, #ffe8f0 100%);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);
+        }
+
+        .contact-icon {
+            position: relative;
+            z-index: 1;
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .contact-icon.telegram {
+            background: linear-gradient(135deg, #0088cc 0%, #00a0e9 100%);
+        }
+
+        .contact-icon.email {
+            background: linear-gradient(135deg, #ea4335 0%, #ff6b6b 100%);
+        }
+
+        .contact-icon.phone {
+            background: linear-gradient(135deg, #34a853 0%, #5cb85c 100%);
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .contact-label {
+            position: relative;
+            z-index: 1;
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.95rem;
+        }
+
+        .check-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #f093fb;
+            font-size: 1.5rem;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 2;
+        }
+
+        .contact-card.active .check-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .btn-submit {
+            position: relative;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.4);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(240, 147, 251, 0.5);
+        }
+
+        .btn-submit:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-shimmer {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        .form-text {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
         }
     </style>
 }

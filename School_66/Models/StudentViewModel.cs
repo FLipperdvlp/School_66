@@ -8,7 +8,7 @@ public class StudentViewModel
     public string Email { get; set; } = string.Empty;
     public string ClassName { get; set; } = string.Empty;
     public string ContactMethod { get; set; } = string.Empty;
-    public string RequestText { get; set; } = string.Empty; // Текст запиту
+    public string RequestText { get; set; } = string.Empty; 
 
 
     public string PhoneNumber { get; set; } = string.Empty;

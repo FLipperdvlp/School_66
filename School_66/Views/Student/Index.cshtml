@@ -24,7 +24,7 @@
                                     class="form-control form-control-modern" 
                                     id="firstName" 
                                     name="FirstName" 
-                                    value="@Model?.FirstName ?? """
+                                    value="@Model?.FirstName"
                                     placeholder="Ім'я" 
                                     required />
                                 <label for="firstName">
@@ -39,7 +39,7 @@
                                     class="form-control form-control-modern" 
                                     id="lastName" 
                                     name="LastName" 
-                                    value="@Model?.LastName ?? """
+                                    value="@Model?.LastName"
                                     placeholder="Прізвище" 
                                     required />
                                 <label for="lastName">
@@ -54,7 +54,7 @@
                                     class="form-control form-control-modern" 
                                     id="className" 
                                     name="ClassName" 
-                                    value="@Model?.ClassName ?? """
+                                    value="@Model?.ClassName"
                                     placeholder="Клас" 
                                     required />
                                 <label for="className">
@@ -66,52 +66,52 @@
 
                         <div class="col-12">
                             <label class="form-label fw-semibold fs-5 mb-3">
-                                <i class="bi bi-chat-left-dots me-2"></i>Як з вами зв'язатися?
+                                <i class="fa-regular fa-comment-dots me-2"></i>Як з вами зв'язатися?
                             </label>
                             <div class="contact-grid">
                                 <button type="button" class="contact-card" data-method="Telegram">
                                     <div class="contact-icon telegram">
-                                        <i class="bi bi-telegram"></i>
+                                        <i class="fa-brands fa-telegram"></i>
                                     </div>
-                                    <span class="contact-label">Телеграм</span>
+                                    <span class="contact-label">Telegram</span>
                                     <div class="check-icon">
-                                        <i class="bi bi-check-circle-fill"></i>
+                                        <i class="fa-solid fa-check-circle"></i>
                                     </div>
                                 </button>
 
                                 <button type="button" class="contact-card" data-method="Email">
                                     <div class="contact-icon email">
-                                        <i class="bi bi-envelope-fill"></i>
+                                        <i class="fa-brands fa-google"></i>
                                     </div>
-                                    <span class="contact-label">Email</span>
+                                    <span class="contact-label">Gmail</span>
                                     <div class="check-icon">
-                                        <i class="bi bi-check-circle-fill"></i>
+                                        <i class="fa-solid fa-check-circle"></i>
                                     </div>
                                 </button>
 
                                 <button type="button" class="contact-card" data-method="Phone">
                                     <div class="contact-icon phone">
-                                        <i class="bi bi-telephone-fill"></i>
+                                        <i class="fa-solid fa-phone"></i>
                                     </div>
                                     <span class="contact-label">Телефон</span>
                                     <div class="check-icon">
-                                        <i class="bi bi-check-circle-fill"></i>
+                                        <i class="fa-solid fa-check-circle"></i>
                                     </div>
                                 </button>
                             </div>
-                            <input type="hidden" id="contactMethod" name="ContactMethod" value="@Model?.ContactMethod ?? """/>
+                            <input type="hidden" id="contactMethod" name="ContactMethod" value="@Model?.ContactMethod" />
                         </div>
 
                         <div class="col-12">
                             <div class="form-floating">
+                                <label for="requestText">
+                                    <i class="bi bi-pencil-square me-2"></i>Ваш запит:
+                                </label>
                                 <textarea class="form-control form-control-modern" 
                                         id="requestText" 
                                         name="RequestText" 
                                         placeholder="Ваш запит"
-                                        style="height: 150px">@Model?.RequestText ?? ""</textarea>
-                                <label for="requestText">
-                                    <i class="bi bi-pencil-square me-2"></i>Ваш запит
-                                </label>
+                                        style="height: 150px">@Model?.RequestText</textarea>
                             </div>
                         </div>
 

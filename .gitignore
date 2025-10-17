@@ -1,2 +1,15 @@
-bin/
-obj/
+# Build artifacts
+/bin/
+/obj/
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+*.rsuser
+
+# Logs / cache
+*.log
+*.cache
+*.tmp

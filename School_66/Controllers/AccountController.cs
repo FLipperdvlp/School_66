@@ -34,7 +34,9 @@ public class AccountController : Controller
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity));
 
-            return RedirectToAction("Index", "Home");
+            Console.WriteLine("User logged in: " + user.Email);
+            TempData["SuccessMessage"] = "Ви успішно увійшли!";
+            return RedirectToAction("Index", "Home"); // Редирект на главную
         }
 
         ModelState.AddModelError("", "Невірний email або пароль");
@@ -69,6 +71,8 @@ public class AccountController : Controller
 
         await _userService.CreateUserAsync(newUser);
 
+        TempData["SuccessMessage"] = "Ви успішно зареєструвалися!";
+        
         return RedirectToAction("LogIn");
     }
 }

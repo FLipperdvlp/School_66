@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/gleb/Desktop/School_66/School_66/School_66/School_66.csproj": {}
+    "C:\\VS_Code\\School_66\\School_66\\School_66\\School_66.csproj": {}
   },
   "projects": {
-    "/Users/gleb/Desktop/School_66/School_66/School_66/School_66.csproj": {
+    "C:\\VS_Code\\School_66\\School_66\\School_66\\School_66.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/gleb/Desktop/School_66/School_66/School_66/School_66.csproj",
+        "projectUniqueName": "C:\\VS_Code\\School_66\\School_66\\School_66\\School_66.csproj",
         "projectName": "School_66",
-        "projectPath": "/Users/gleb/Desktop/School_66/School_66/School_66/School_66.csproj",
-        "packagesPath": "/Users/gleb/.nuget/packages/",
-        "outputPath": "/Users/gleb/Desktop/School_66/School_66/School_66/obj/",
+        "projectPath": "C:\\VS_Code\\School_66\\School_66\\School_66\\School_66.csproj",
+        "packagesPath": "C:\\Users\\lp021\\.nuget\\packages\\",
+        "outputPath": "C:\\VS_Code\\School_66\\School_66\\School_66\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/gleb/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\lp021\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -78,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

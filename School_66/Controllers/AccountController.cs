@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 
-[Route("")]
+[Route("Account")]
 public class AccountController : Controller
 {
     private readonly IUserService _userService;
@@ -22,10 +22,13 @@ public class AccountController : Controller
         var user = await _userService.GetUserByEmailAndPasswordAsync(email, password);
         if(user != null)
         {
+            string role = email == "admin@gmail.com" ? "Admin" : "User";
+
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.FullName)
+                new Claim(ClaimTypes.Name, user.FullName),
+                new Claim(ClaimTypes.Role, role)
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -44,6 +47,16 @@ public class AccountController : Controller
         return View();
     }
 
+    [HttpGet("Logout")]
+    public async Task<IActionResult> Logout()
+    {
+        // Разлогиниваем пользователя
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+        // Показываем уведомление и возвращаем на главную
+        TempData["SuccessMessage"] = "Ви вийшли з акаунту.";
+        return RedirectToAction("Index", "Home");
+    }
 
     [HttpGet("Register")]
     public IActionResult Register() => View();

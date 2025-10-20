@@ -22,8 +22,21 @@
                     <li><a href="/Home#news">Новини</a></li>
                     <li><a href="/Home#contact">Контакти</a></li>
                     <li class="nav-item"><a class="nav-link" href="/forms">Форма</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/LogIn">Вхід</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Register">Реєстрація</a></li>
+                    @* <li class="nav-item"><a class="nav-link" href="/LogIn">Вхід</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Register">Реєстрація</a></li> *@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item"><a class="nav-link" href="/Admin">Адмін Панель</a></li>
+                        }
+                        <li class="nav-item"><a class="nav-link" href="/Account/Logout">Вихід</a></li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a class="nav-link" href="/Account/LogIn">Вхід</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Account/Register">Реєстрація</a></li>
+                    }
                 </ul>
             </nav>
         </div>

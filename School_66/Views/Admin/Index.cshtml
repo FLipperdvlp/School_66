@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Адмін Панель";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="admin-panel">
+    <h2>Адмін Панель</h2>
+    <p>Ласкаво просимо, адміністраторе!</p>
+
+    <div class="admin-actions">
+        <a href="#" class="admin-btn">📋 Керувати формами</a>
+        <a href="#" class="admin-btn">👤 Користувачі</a>
+        <a href="#" class="admin-btn">📰 Новини</a>
+    </div>
+</section>
+
+@section Scripts {
+    <style>
+        .admin-panel {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .admin-btn {
+            display: inline-block;
+            margin: 15px;
+            padding: 15px 30px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #28a745, #218838);
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .admin-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+}

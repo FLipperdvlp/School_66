@@ -39,7 +39,8 @@ public class AccountController : Controller
             return RedirectToAction("Index", "Home"); // Редирект на главную
         }
 
-        ModelState.AddModelError("", "Невірний email або пароль");
+        ModelState.AddModelError("", "Невірний email або пароль");//maybe change(remove) !
+        TempData["ErrorMessage"] = "Ви ввели неправильну пошту або пароль!";
         return View();
     }
 

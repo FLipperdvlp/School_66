@@ -32,20 +32,19 @@ namespace School_66.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            // маппим ViewModel → Entity
-            var student = new Student
+            var form = new StudentForm
             {
-                Name = model.FirstName,        // Имя → Name
-                Surname = model.LastName,      // Прізвище → Surname
-                ClassId = Guid.NewGuid(),      // временно, если класс не связан
-                Email = "test@gmail.com",      // можно привязать из формы
-                PhoneNumber = "+380...",       // можно привязать из формы
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                ClassName = model.ClassName,
+                ContactMethod = model.ContactMethod ?? "Not specified",
+                RequestText = model.RequestText
             };
-            
-            await _studentForm.CreateFormForStudent(student);
+
+            await _studentForm.CreateFormForStudent(form);
 
             TempData["Message"] = "Ваш запит успішно збережено!";
-            return RedirectToAction("Success");
+            return RedirectToAction("Index", "Home");
         }
         
         [HttpGet("success")]

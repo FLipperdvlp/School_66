@@ -4,5 +4,5 @@ namespace School_66.Interface;
 
 public interface IStudentFormService
 {
-    Task<Student> CreateFormForStudent(Student student);
+    Task<StudentForm> CreateFormForStudent(StudentForm student);
 }

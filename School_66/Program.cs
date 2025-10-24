@@ -37,12 +37,10 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// ✅ Отправляем тестовое сообщение в фоне, чтобы не мешать запуску
 using (var scope = app.Services.CreateScope())
 {
     var telegramService = scope.ServiceProvider.GetRequiredService<TelegramBotService>();
 
-    // Асинхронный вызов в фоновом потоке
     _ = Task.Run(async () =>
     {
         try

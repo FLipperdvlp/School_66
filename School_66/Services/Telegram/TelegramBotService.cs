@@ -5,11 +5,11 @@ namespace School_66.Service
     public class TelegramBotService
     {
         private readonly TelegramBotClient _botClient;
-        private readonly long _adminChatId = 6155527631; // <--- замени на свой Telegram ID
+        long adminChatId = long.Parse(Environment.GetEnvironmentVariable("TELEGRAM_ADMIN_CHATID"));
 
         public TelegramBotService()
         {
-            string token = "8292821706:AAENpyNBsr1P_PK_fe5uHpR2LRKswYjfzlc"; // <--- замени на свой токен
+            string token = Environment.GetEnvironmentVariable("TELEGRAM_TOKEN");
             _botClient = new TelegramBotClient(token);
         }
 
@@ -17,7 +17,7 @@ namespace School_66.Service
         {
             try
             {
-                await _botClient.SendMessage(_adminChatId, message);
+                await _botClient.SendMessage(adminChatId, message);
                 Console.WriteLine("✅ Telegram message sent successfully!");
             }
             catch (Exception ex)

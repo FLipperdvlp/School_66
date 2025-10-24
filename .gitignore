@@ -1,6 +1,7 @@
 # Build artifacts
 /bin/
 /obj/
+appsettings.json
 
 # IDE
 .vs/

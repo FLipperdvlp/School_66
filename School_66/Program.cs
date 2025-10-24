@@ -26,8 +26,10 @@ builder.Services.AddScoped<IStudentFormService, StudentFormService>();
 builder.Services.AddScoped<IParentFormService, ParentFormService>();
 builder.Services.AddScoped<IRequestService, RequestService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddSingleton<TelegramBotService>();
 
 var app = builder.Build();
+
 
 app.UseStaticFiles();
 
@@ -35,4 +37,22 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+// ✅ Отправляем тестовое сообщение в фоне, чтобы не мешать запуску
+using (var scope = app.Services.CreateScope())
+{
+    var telegramService = scope.ServiceProvider.GetRequiredService<TelegramBotService>();
+
+    // Асинхронный вызов в фоновом потоке
+    _ = Task.Run(async () =>
+    {
+        try
+        {
+            await telegramService.SendMessageAsync("✅ Hello 👋 — test message from School_66 bot!");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Telegram test failed: {ex.Message}");
+        }
+    });
+}
 app.Run();

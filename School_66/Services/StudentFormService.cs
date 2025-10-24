@@ -14,10 +14,17 @@ public class StudentFormService : IStudentFormService
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    public async Task<Student> CreateFormForStudent(Student student)
+    public async Task<StudentForm> CreateFormForStudent(StudentForm form)
     {
-        _context.Students.Add(student);
-        await _context.SaveChangesAsync(); 
-        return student;
+        _context.StudentForms.Add(form);
+        await _context.SaveChangesAsync();
+        return form;
     }
+    
+    // public async Task<List<StudentForm>> GetAllFormsAsync()
+    // {
+    //     return await _context.StudentForms
+    //         .OrderByDescending(f => f.SubmittedAt)
+    //         .ToListAsync();
+    // }
 }

@@ -24,7 +24,7 @@
                     <li class="nav-item"><a class="nav-link" href="/forms">Форма</a></li>
                     @* <li class="nav-item"><a class="nav-link" href="/LogIn">Вхід</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Register">Реєстрація</a></li> *@
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity!.IsAuthenticated)
                     {
                         if (User.IsInRole("Admin"))
                         {

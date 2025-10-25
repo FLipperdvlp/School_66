@@ -45,7 +45,13 @@ using (var scope = app.Services.CreateScope())
     {
         try
         {
-            await telegramService.SendMessageAsync("✅ Hello 👋 — test message from School_66 bot!");
+            string message =
+                "🚀 Программа *School_66* успешно запущена!\n\n" +
+                "🖥️ Сервер работает локально: http://localhost:5009\n" +
+                "📅 Время запуска: " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + "\n" +
+                "✅ Все службы инициализированы.";        
+            await telegramService.SendMessageAsync(message);
+            Console.WriteLine("✅ Telegram startup message sent successfully!");
         }
         catch (Exception ex)
         {

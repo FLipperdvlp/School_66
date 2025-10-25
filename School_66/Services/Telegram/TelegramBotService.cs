@@ -5,11 +5,11 @@ namespace School_66.Service
     public class TelegramBotService
     {
         private readonly TelegramBotClient _botClient;
-        long adminChatId = long.Parse(Environment.GetEnvironmentVariable("TELEGRAM_ADMIN_CHATID"));
+        long adminChatId = long.Parse(Environment.GetEnvironmentVariable("TELEGRAM_ADMIN_CHATID")!);
 
         public TelegramBotService()
         {
-            string token = Environment.GetEnvironmentVariable("TELEGRAM_TOKEN");
+            string? token = Environment.GetEnvironmentVariable("TELEGRAM_TOKEN")!;
             _botClient = new TelegramBotClient(token);
         }
 

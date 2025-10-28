@@ -31,25 +31,13 @@ namespace School_66.Controllers
         public async Task<IActionResult> GetForms()
         {
             var userEmail = User.Identity?.Name;
-        
+
             var forms = await _context.StudentForms
                 .Where(f => f.UserEmail == userEmail)
                 .OrderByDescending(f => f.CreatedAt)
                 .ToListAsync();
-        
+
             return View(forms); // теперь List<StudentForm>
         }
     }
 }
-        //     var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-    
-        //     if (string.IsNullOrEmpty(userId))
-        //     {
-        //         return RedirectToAction("LogIn", "Account");
-        //     }
-    
-        //     // Получаем запросы через сервис
-        //     var requests = await _requestService.GetUserRequestsAsync(userId);
-    
-        //     return View(requests); // передаем List<Request> или List<RequestViewModel>
-        // 

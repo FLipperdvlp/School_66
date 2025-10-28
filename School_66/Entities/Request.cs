@@ -25,4 +25,7 @@ public class Request
 
     [Required]
     public string UserId { get; set; } = string.Empty;
+    
+    [Required]
+    public string UserEmail { get; set; } = string.Empty;
 }

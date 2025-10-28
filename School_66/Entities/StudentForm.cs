@@ -11,6 +11,16 @@ public class StudentForm
     public string FirstName { get; set; } = "";
 
     [Required, MaxLength(50)]
+    public string Title { get; set; } = "";
+
+    [Required, MaxLength(50)]
+    public string Type { get; set; } = "";
+
+    [Required, MaxLength(50)]
+    public string Status { get; set; } = "";
+
+
+    [Required, MaxLength(50)]
     public string LastName { get; set; } = "";
 
     [Required, MaxLength(20)]
@@ -23,4 +33,7 @@ public class StudentForm
     public string RequestText { get; set; } = "";
 
     public DateTime SubmittedAt { get; set; } = DateTime.UtcNow;
+
+    public string UserEmail { get; set; } = string.Empty;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

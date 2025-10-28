@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using School_66.Entities;
 using School_66.Interface;
@@ -29,8 +30,9 @@ namespace School_66.Controllers
         [HttpPost("createformforstudent")]
         public async Task<IActionResult> CreateFormForStudent(StudentViewModel model)
         {
-            if (!ModelState.IsValid)
-                return View(model);
+            if (!ModelState.IsValid) return View(model);
+
+            var userEmail = User.Identity?.Name;
 
             var form = new StudentForm
             {
@@ -38,7 +40,14 @@ namespace School_66.Controllers
                 LastName = model.LastName,
                 ClassName = model.ClassName,
                 ContactMethod = model.ContactMethod ?? "Not specified",
-                RequestText = model.RequestText
+                RequestText = model.RequestText,
+                UserEmail = userEmail ?? "Anonymous",
+
+                // Заповнення інших полів
+                Title = $"{model.LastName} {model.FirstName} — запит",
+                Type = "Учнівська форма",
+                Status = "Новий",
+                CreatedAt = DateTime.Now
             };
 
             await _studentForm.CreateFormForStudent(form);

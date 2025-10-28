@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using School_66.DataBase;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -10,31 +12,44 @@ namespace School_66.Controllers
     public class FormController : Controller
     {
         private readonly IRequestService _requestService;
+        private readonly AppDbContext _context;
 
-        public FormController(IRequestService requestService)
+        public FormController(AppDbContext context, IRequestService requestService)
         {
+            _context = context;
             _requestService = requestService;
         }
 
+        [HttpGet("")]//forms
         public IActionResult Index()
         {
             return View();
         }
 
-        [HttpGet("getForms")]
+        [Authorize]
+        [HttpGet("getForms")]//forms/getForms
         public async Task<IActionResult> GetForms()
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-    
-            if (string.IsNullOrEmpty(userId))
-            {
-                return RedirectToAction("LogIn", "Account");
-            }
-    
-            // Получаем запросы через сервис
-            var requests = await _requestService.GetUserRequestsAsync(userId);
-    
-            return View(requests); // передаем List<Request> или List<RequestViewModel>
+            var userEmail = User.Identity?.Name;
+        
+            var forms = await _context.StudentForms
+                .Where(f => f.UserEmail == userEmail)
+                .OrderByDescending(f => f.CreatedAt)
+                .ToListAsync();
+        
+            return View(forms); // теперь List<StudentForm>
         }
     }
 }
+        //     var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    
+        //     if (string.IsNullOrEmpty(userId))
+        //     {
+        //         return RedirectToAction("LogIn", "Account");
+        //     }
+    
+        //     // Получаем запросы через сервис
+        //     var requests = await _requestService.GetUserRequestsAsync(userId);
+    
+        //     return View(requests); // передаем List<Request> или List<RequestViewModel>
+        // 

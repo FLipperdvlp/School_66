@@ -26,4 +26,12 @@ public class UserService : IUserService
         _db.Users.Add(user);
         await _db.SaveChangesAsync();
     }
+
+    public async Task<User?> GetUserByEmailAsync(string? email)
+    {
+        if (string.IsNullOrEmpty(email))
+            return null;
+        
+        return await _db.Users.FirstOrDefaultAsync(u => u.Email == email);
+    }
 }

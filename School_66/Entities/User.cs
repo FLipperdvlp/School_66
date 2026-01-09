@@ -17,4 +17,6 @@ public class User
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow; 
     [MaxLength(50)]
     public string? Role { get; set; } 
+    [MaxLength(50)]
+    public string? AuthProvider { get; set; }
 }

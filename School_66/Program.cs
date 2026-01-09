@@ -3,6 +3,7 @@ using School_66.DataBase;
 using School_66.Interface;
 using School_66.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
@@ -14,15 +15,29 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data source=School_66.db"));
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.LoginPath = "/Account/LogIn";     
-        options.AccessDeniedPath = "/Account/LogIn"; 
-        options.ExpireTimeSpan = TimeSpan.FromHours(1);
-    });
+// builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 
-builder.Services.AddAuthorization();
+//AUTHENTICATION CONFIGURATION
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+})
+.AddCookie(options =>
+{
+    options.LoginPath = "/Account/LogIn";     
+    options.AccessDeniedPath = "/Account/LogIn"; 
+    options.ExpireTimeSpan = TimeSpan.FromHours(1);
+})
+.AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
+{
+    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+    options.CallbackPath = "/signin-google";
+});
+
+
+builder.Services.AddAuthentication();
 
 builder.Services.AddScoped<IStudentFormService, StudentFormService>();
 builder.Services.AddScoped<IParentFormService, ParentFormService>();
@@ -50,7 +65,7 @@ using (var scope = app.Services.CreateScope())
         {
             string message =
                 "🚀 Программа *School_66* успешно запущена!\n\n" +
-                "🖥️ Сервер работает локально: http://localhost:5009\n" +
+                "🖥️ Сервер работает локально: https://localhost:5009\n" +
                 "📅 Время запуска: " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + "\n" +
                 "✅ Все службы инициализированы.";        
             await telegramService.SendMessageAsync(message);

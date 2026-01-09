@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
+using System.CodeDom.Compiler;
+using Microsoft.AspNetCore.Authentication.Google;
 
 [Route("Account")]
 public class AccountController : Controller
@@ -12,6 +14,8 @@ public class AccountController : Controller
     {
         _userService = userService;
     }
+
+    #region Email/Password Authentication
 
     [HttpGet("LogIn")]
     public IActionResult LogIn() => View();
@@ -89,4 +93,62 @@ public class AccountController : Controller
         
         return RedirectToAction("LogIn");
     }
+
+    #endregion
+
+    #region Google Authentication
+
+    [HttpGet("GoogleLogin")]
+    public IActionResult GoogleLogin()
+    {
+        var redirectUrl = Url.Action("GoogleResponse", "Account");
+        var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+        return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+    }
+
+    [HttpGet("GoogleResponse")]
+    public async Task<IActionResult> GoogleResponse()
+    {
+        var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        if (!result.Succeeded)
+        {
+            TempData["ErrorMessage"] = "Помилка при вході через Google.";
+            return RedirectToAction("LogIn");
+        }
+
+        var email = result.Principal.FindFirstValue(ClaimTypes.Email);
+        var name = result.Principal.FindFirstValue(ClaimTypes.Name);
+
+        var user = await _userService.GetUserByEmailAsync(email);
+        if (user == null)
+        {
+            // Создаем нового пользователя
+            user = new User
+            {
+                FullName = User.FindFirstValue(ClaimTypes.Name) ?? email!,
+                Email = email,
+                AuthProvider = "Google",
+                Role = "User",
+                Password = "" // оставляем пустым, т.к. авторизация через Google
+            };
+            await _userService.CreateUserAsync(user);
+        }
+
+        // Логиним пользователя
+        var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.Name, user.FullName ?? user.Email!),
+            new Claim(ClaimTypes.Role, user.Role ?? "User")
+        };
+        
+        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+
+
+        TempData["SuccessMessage"] = "Ви увійшли через Google!";
+        return RedirectToAction("Index", "Home");
+    }
+    
+    #endregion
 }

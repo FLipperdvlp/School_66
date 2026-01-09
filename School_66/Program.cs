@@ -16,7 +16,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data source=School_66.db"));
 
 // builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-
 //AUTHENTICATION CONFIGURATION
 builder.Services.AddAuthentication(options =>
 {

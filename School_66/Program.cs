@@ -27,13 +27,13 @@ builder.Services.AddAuthentication(options =>
     options.LoginPath = "/Account/LogIn";     
     options.AccessDeniedPath = "/Account/LogIn"; 
     options.ExpireTimeSpan = TimeSpan.FromHours(1);
-})
-.AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
-{
-    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-    options.CallbackPath = "/signin-google";
 });
+// .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
+// {
+//     // options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+//     // options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+//     options.CallbackPath = "/signin-google";
+// });
 
 
 builder.Services.AddAuthentication();
@@ -55,26 +55,26 @@ app.MapControllerRoute(
 // Создаем область для сервисов
 using (var scope = app.Services.CreateScope())
 {
-    var telegramService = scope.ServiceProvider.GetRequiredService<TelegramBotService>();
+    // var telegramService = scope.ServiceProvider.GetRequiredService<TelegramBotService>();
 
-    // Telegram уведомление
-    _ = Task.Run(async () =>
-    {
-        try
-        {
-            string message =
-                "🚀 Программа *School_66* успешно запущена!\n\n" +
-                "🖥️ Сервер работает локально: https://localhost:5009\n" +
-                "📅 Время запуска: " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + "\n" +
-                "✅ Все службы инициализированы.";        
-            await telegramService.SendMessageAsync(message);
-            Console.WriteLine("✅ Telegram startup message sent successfully!");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Telegram test failed: {ex.Message}");
-        }
-    });
+    // // Telegram уведомление
+    // _ = Task.Run(async () =>
+    // {
+    //     try
+    //     {
+    //         string message =
+    //             "🚀 Программа *School_66* успешно запущена!\n\n" +
+    //             "🖥️ Сервер работает локально: https://localhost:5009\n" +
+    //             "📅 Время запуска: " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + "\n" +
+    //             "✅ Все службы инициализированы.";        
+    //         await telegramService.SendMessageAsync(message);
+    //         Console.WriteLine("✅ Telegram startup message sent successfully!");
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         Console.WriteLine($"Telegram test failed: {ex.Message}");
+    //     }
+    // });
 
     // Email уведомление
     _ = Task.Run(async () =>
